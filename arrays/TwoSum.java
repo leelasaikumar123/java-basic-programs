@@ -1,36 +1,38 @@
 package arrays;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class TwoSum {
-    public static void main(String[] args) {
- Scanner sc = new Scanner(System.in);
+   
+   public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();    
+        int n = sc.nextInt();
         int target = sc.nextInt();
 
         int[] arr = new int[n];
-
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
 
+        HashSet<Integer> set = new HashSet<>();
         boolean found = false;
 
-        // Two loops
-        for(int i = 0; i < n; i++) {
-            for(int j = i + 1; j < n; j++) {
-                if(arr[i] + arr[j] == target) {
-                    System.out.println(arr[i] + " " + arr[j]);
-                    found = true;
-                    break; 
-                }
+        for (int num : arr) {
+            int complement = target - num;
+
+            if (set.contains(complement)) {
+                System.out.println(num + " " + complement);
+                found = true;
+                break;
             }
-            if(found) break; 
+
+            set.add(num);
         }
 
-        if(!found) {
-            System.out.println("No two nums add up to give the target");
+        if (!found) {
+            System.out.println("No Two nums add up to give the target");
         }
     }
 }
