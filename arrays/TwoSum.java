@@ -4,31 +4,33 @@ import java.util.Scanner;
 
 public class TwoSum {
     public static void main(String[] args) {
-     Scanner sc=new Scanner(System.in);
-        int arraySize=sc.nextInt();
-        int target=sc.nextInt();
-        int[] array=new int[arraySize];
-        for(int i=0;i<array.length;i++){
-            array[i]=sc.nextInt();
+ Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();    
+        int target = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        for(int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
         }
-        int i=0;
-        int j=array.length-1;
-        boolean flag=false;
-        while(i<j){
-        if(array[i]+array[j]==target){
-            System.out.println(array[i] +" "+array[j]);
-            flag=true;
-            break;
+
+        boolean found = false;
+
+        // Two loops
+        for(int i = 0; i < n; i++) {
+            for(int j = i + 1; j < n; j++) {
+                if(arr[i] + arr[j] == target) {
+                    System.out.println(arr[i] + " " + arr[j]);
+                    found = true;
+                    break; 
+                }
+            }
+            if(found) break; 
         }
-      else  if(target<array[i]+array[j]){
-            j--;
-        }
-      else{
-        i++;
-      }
-        }
-        if(!flag){
-            System.out.println("No Two nums add up to give the target");
+
+        if(!found) {
+            System.out.println("No two nums add up to give the target");
         }
     }
 }
